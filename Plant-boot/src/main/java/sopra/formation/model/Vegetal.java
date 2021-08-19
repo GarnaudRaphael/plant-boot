@@ -9,39 +9,68 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Version;
+
+import com.fasterxml.jackson.annotation.JsonView;
 @Entity
 public class Vegetal {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@JsonView(Views.ViewCommon.class)
 	private Long id;
+	@Version
+	@JsonView(Views.ViewCommon.class)
+	private int version;
+	@JsonView(Views.ViewCommon.class)
 	private Nature nature;
+	@JsonView(Views.ViewCommon.class)
 	private TempsDeVie tempsDeVie;
+	@JsonView(Views.ViewCommon.class)
 	private Presentation presentation;
+	@JsonView(Views.ViewCommon.class)
 	private Sol sol;
+	@JsonView(Views.ViewCommon.class)
 	private Comportement comportement;
+	@JsonView(Views.ViewCommon.class)
 	private Utilite utilite;
+	@JsonView(Views.ViewCommon.class)
 	private TypeDeFeuille typeDeFeuille;
+	@JsonView(Views.ViewCommon.class)
 	private TempsDeFeuille tempsDeFeuille;
+	@JsonView(Views.ViewCommon.class)
 	private UtiliteOrnement utiliteOrnement;
+	@JsonView(Views.ViewCommon.class)
 	private UtiliteGastronomie utiliteGastronomie;
+	@JsonView(Views.ViewCommon.class)
 	private Couleur couleur;
+	@JsonView(Views.ViewCommon.class)
 	private UtiliteComposition utiliteComposition;
+	@JsonView(Views.ViewCommon.class)
 	private UtiliteCimetiere utiliteCimetiere;
+	@JsonView(Views.ViewCommon.class)
 	private Long consommationEau;
+	@JsonView(Views.ViewCommon.class)
 	private Long consommationEngrais;
+	@JsonView(Views.ViewCommon.class)
 	private Long prix;
+	@JsonView(Views.ViewCommon.class)
 	private Long prixFruit;
 	@OneToMany
 	@JoinColumn(name="affinite_id")
+	@JsonView(Views.ViewVegetal.class)
 	private List<Vegetal> affinite;
 	@OneToMany(mappedBy="vegetal")
+	@JsonView(Views.ViewVegetal.class)
 	private List<DejaPlante> dejaPlante;
 	@OneToMany(mappedBy="vegetal")
+	@JsonView(Views.ViewVegetal.class)
 	private List<Commentaire> commentaire;
 	@OneToMany(mappedBy="vegetal")
+	@JsonView(Views.ViewVegetal.class)
 	private List<Article> article;
 	@ManyToOne
 	@JoinColumn(name="notice_id")
+	@JsonView(Views.ViewVegetal.class)
 	private Notice notice;
 	
 	public Vegetal() {
