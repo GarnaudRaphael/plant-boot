@@ -18,63 +18,63 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import sopra.formation.model.Adresse;
+import sopra.formation.model.Commande;
 import sopra.formation.model.Views;
-import sopra.formation.repository.IAdresseRepository;
+import sopra.formation.repository.ICommandeRepository;
 
 @RestController
-@RequestMapping("/adresse")
+@RequestMapping("/commande")
 @CrossOrigin("*")
-public class AdresseRestController {
+public class CommandeRestController {
 
 	@Autowired
-	private IAdresseRepository adresseRepo;
+	private ICommandeRepository commandeRepo;
 
 	@GetMapping("")
-	@JsonView(Views.ViewAdresse.class)
-	public List<Adresse> findAll() {
-		return adresseRepo.findAllAdresse();
+	@JsonView(Views.ViewCommande.class)
+	public List<Commande> findAll() {
+		return commandeRepo.findAllCommande();
 	}
 
 	@GetMapping("/{id}")
-	@JsonView(Views.ViewAdresse.class)
-	public Adresse find(@PathVariable Long id) {
+	@JsonView(Views.ViewCommande.class)
+	public Commande find(@PathVariable Long id) {
 
-		Optional<Adresse> optAdresse = adresseRepo.findAdresseById(id);
+		Optional<Commande> optCommande = commandeRepo.findCommandeById(id);
 
-		if (optAdresse.isPresent()) {
-			return optAdresse.get();
+		if (optCommande.isPresent()) {
+			return optCommande.get();
 		} else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
 	}
 
 	@PostMapping("")
-	@JsonView(Views.ViewAdresse.class)
-	public Adresse create(@RequestBody Adresse adresse) {
-		adresse = adresseRepo.save(adresse);
+	@JsonView(Views.ViewCommande.class)
+	public Commande create(@RequestBody Commande commande) {
+		commande = commandeRepo.save(commande);
 
-		return adresse;
+		return commande;
 	}
 
 	@PutMapping("/{id}")
-	@JsonView(Views.ViewAdresse.class)
-	public Adresse update(@RequestBody Adresse adresse, @PathVariable Long id) {
-		if (!adresseRepo.existsById(id)) {
+	@JsonView(Views.ViewCommande.class)
+	public Commande update(@RequestBody Commande commande, @PathVariable Long id) {
+		if (!commandeRepo.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
 
-		adresse = adresseRepo.save(adresse);
+		commande = commandeRepo.save(commande);
 
-		return adresse;
+		return commande;
 	}
 
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
-		if (!adresseRepo.existsById(id)) {
+		if (!commandeRepo.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
 		
-		adresseRepo.deleteById(id);
+		commandeRepo.deleteById(id);
 	}
 }
