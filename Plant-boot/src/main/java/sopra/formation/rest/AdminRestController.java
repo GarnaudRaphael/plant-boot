@@ -22,7 +22,7 @@ import sopra.formation.model.Admin;
 import sopra.formation.model.Views;
 import sopra.formation.repository.IAdminRepository;
 @RestController
-@RequestMapping("/Admin")
+@RequestMapping("/admin")
 @CrossOrigin("*")
 public class AdminRestController {
 	@Autowired
