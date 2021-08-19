@@ -6,20 +6,31 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Version;
+
+import com.fasterxml.jackson.annotation.JsonView;
 
 
 @Entity
 public class Adresse {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@JsonView(Views.ViewCommon.class)
 	private Long id;
+	@Version
+	@JsonView(Views.ViewCommon.class)
+	private int version;
+	@JsonView(Views.ViewCommon.class)
+	private Long numero;
+	@JsonView(Views.ViewCommon.class)
+	private String rue;
+	@JsonView(Views.ViewCommon.class)
+	private Long codePostal;
+	@JsonView(Views.ViewCommon.class)
+	private String ville;
 	@ManyToOne
 	@JoinColumn(name="adresse_id")
 	private Utilisateur utilisateur;
-	private Long numero;
-	private String rue;
-	private Long codePostal;
-	private String ville;
 	
 	public Adresse() {
 		super();
