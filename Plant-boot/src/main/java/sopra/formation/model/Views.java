@@ -17,4 +17,5 @@ public class Views {
 	public static class ViewCommentaire extends ViewCommon {}
 	public static class ViewRecherche extends ViewCommon {}
 	public static class ViewArticle extends ViewCommon {}
+	public static class ViewSousGuide extends ViewCommon {}
 }
