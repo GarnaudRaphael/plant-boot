@@ -36,10 +36,8 @@ public class Utilisateur extends Personne {
 	}
 
 	
-
-
-	public Utilisateur(String numeroTelephone, List<Adresse> adresse, List<Jardin> jardin, List<Devis> devis,
-			List<Recherche> recherche, List<Commentaire> commentaire) {
+	public Utilisateur( String numeroTelephone, List<Adresse> adresse, List<Jardin> jardin,
+			List<Devis> devis, List<Recherche> recherche, List<Commentaire> commentaire) {
 		super();
 		this.numeroTelephone = numeroTelephone;
 		this.adresse = adresse;
@@ -58,7 +56,6 @@ public class Utilisateur extends Personne {
 	public void setNumeroTelephone(String numeroTelephone) {
 		this.numeroTelephone = numeroTelephone;
 	}
-
 
 	public List<Adresse> getAdresse() {
 		return adresse;
