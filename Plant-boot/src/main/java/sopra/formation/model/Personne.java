@@ -7,7 +7,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
-import javax.persistence.Version;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -37,11 +36,11 @@ public abstract class Personne {
 		super();
 	}
 
-	public Personne(int id, Long version, String nom, String prenom, String adresseMail, String motDePasse,
+	public Personne(int id, int version, String nom, String prenom, String adresseMail, String motDePasse,
 			String pseudo) {
 		super();
 		this.id = id;
-		Version = version;
+		version = version;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.adresseMail = adresseMail;
@@ -49,11 +48,11 @@ public abstract class Personne {
 		this.pseudo = pseudo;
 	}
 
-	public Long getVersion() {
-		return Version;
+	public int getVersion() {
+		return version;
 	}
-	public void setVersion(Long version) {
-		Version = version;
+	public void setVersion(int version) {
+		version = version;
 	}
 
 	public int getId() {
