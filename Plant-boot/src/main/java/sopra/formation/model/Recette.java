@@ -9,16 +9,26 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.Version;
+
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 public class Recette {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@JsonView(Views.ViewCommon.class)
 	private Long id;
+	@Version
+	@JsonView(Views.ViewCommon.class)
+	private int version;
+	@JsonView(Views.ViewCommon.class)
 	private String nom;
 //	private List<String> ingredientsNonVegetaux;
 	@OneToMany(mappedBy="recette")
+	@JsonView(Views.ViewRecette.class)
 	private List<RecetteJardin> recetteJardin;
+	@JsonView(Views.ViewCommon.class)
 	private String  methode;
 	
 	public Recette() {
