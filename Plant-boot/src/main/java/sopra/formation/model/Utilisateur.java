@@ -35,7 +35,7 @@ public class Utilisateur extends Personne {
 		super();
 	}
 
-	public Utilisateur(Long id, Long version, String nom, String prenom, String adresseMail, String motDePasse,
+	public Utilisateur(Long id, int version, String nom, String prenom, String adresseMail, String motDePasse,
 			String pseudo) {
 		super(id, version, nom, prenom, adresseMail, motDePasse, pseudo);
 		// TODO Auto-generated constructor stub
