@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Version;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -17,7 +18,8 @@ public abstract class Personne {
 	@Id
 	@GeneratedValue(strategy=GenerationType.TABLE)
 	@JsonView(Views.ViewCommon.class)
-	private int id;
+	private Long id;
+	@Version
 	@JsonView(Views.ViewCommon.class)
 	private int version;
 	@JsonView(Views.ViewPersonne.class)
@@ -36,7 +38,7 @@ public abstract class Personne {
 		super();
 	}
 
-	public Personne(int id, int version, String nom, String prenom, String adresseMail, String motDePasse,
+	public Personne(Long id, int version, String nom, String prenom, String adresseMail, String motDePasse,
 			String pseudo) {
 		super();
 		this.id = id;
@@ -55,11 +57,11 @@ public abstract class Personne {
 		version = version;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
