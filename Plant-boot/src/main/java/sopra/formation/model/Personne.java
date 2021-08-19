@@ -42,7 +42,7 @@ public abstract class Personne {
 			String pseudo) {
 		super();
 		this.id = id;
-		version = version;
+		this.version = version;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.adresseMail = adresseMail;
@@ -50,10 +50,12 @@ public abstract class Personne {
 		this.pseudo = pseudo;
 	}
 
+
+
 	public int getVersion() {
 		return version;
 	}
-	public void setVersion(int version) {
+	public void setVersion(Long version) {
 		version = version;
 	}
 
