@@ -8,29 +8,52 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Version;
+
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 public class Recherche {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@JsonView(Views.ViewCommon.class)
 	private Long id;
+	@Version
+	@JsonView(Views.ViewCommon.class)
+	private int version;
 	@ManyToOne
 	@JoinColumn(name="recherche_id")
+	@JsonView(Views.ViewRecherche.class)
 	private Utilisateur utilisateur;
+	@JsonView(Views.ViewCommon.class)
 	private Date date;
+	@JsonView(Views.ViewCommon.class)
 	private Nature nature;
+	@JsonView(Views.ViewCommon.class)
 	private TempsDeVie tempsDeVie;
+	@JsonView(Views.ViewCommon.class)
 	private Presentation presentation;
+	@JsonView(Views.ViewCommon.class)
 	private Sol sol;
+	@JsonView(Views.ViewCommon.class)
 	private Comportement comportement;
+	@JsonView(Views.ViewCommon.class)
 	private Utilite utilite;
+	@JsonView(Views.ViewCommon.class)
 	private TypeDeFeuille typeDeFeuille;
+	@JsonView(Views.ViewCommon.class)
 	private TempsDeFeuille tempsDeFeuille;
+	@JsonView(Views.ViewCommon.class)
 	private UtiliteOrnement utiliteOrnement;
+	@JsonView(Views.ViewCommon.class)
 	private UtiliteGastronomie utiliteGastronomie;
+	@JsonView(Views.ViewCommon.class)
 	private Couleur couleur;
+	@JsonView(Views.ViewCommon.class)
 	private UtiliteComposition utiliteComposition;
+	@JsonView(Views.ViewCommon.class)
 	private UtiliteCimetiere utiliteCimetiere;
+	
 	
 	public Recherche() {
 		super();
