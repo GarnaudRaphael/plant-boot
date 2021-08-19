@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,12 +33,14 @@ public class AdresseRestController {
 
 	@GetMapping("")
 	@JsonView(Views.ViewAdresse.class)
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	public List<Adresse> findAll() {
 		return adresseRepo.findAllAdresse();
 	}
 
 	@GetMapping("/{id}")
 	@JsonView(Views.ViewAdresse.class)
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	public Adresse find(@PathVariable Long id) {
 
 		Optional<Adresse> optAdresse = adresseRepo.findAdresseById(id);
@@ -48,10 +51,33 @@ public class AdresseRestController {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
 	}
+	
+	@GetMapping("/my/{id}")
+	@JsonView(Views.ViewAdresse.class)
+	@PreAuthorize("hasAnyRole('UTILISATEUR')")
+	public Adresse findMy() {//id de la personne
+		Long id=4L;
+		Optional<Adresse> optAdresse = adresseRepo.findAdresseById(id);
+		if (optAdresse.isPresent()) {
+			return optAdresse.get();
+		} else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
+		}
+	}
 
 	@PostMapping("")
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@JsonView(Views.ViewAdresse.class)
 	public Adresse create(@RequestBody Adresse adresse) {
+		adresse = adresseRepo.save(adresse);
+
+		return adresse;
+	}
+	
+	@PostMapping("/my/")
+	@PreAuthorize("hasAnyRole('UTILISATEUR')")
+	@JsonView(Views.ViewAdresse.class)
+	public Adresse createMy(@RequestBody Adresse adresse) {
 		adresse = adresseRepo.save(adresse);
 
 		return adresse;
@@ -59,7 +85,21 @@ public class AdresseRestController {
 
 	@PutMapping("/{id}")
 	@JsonView(Views.ViewAdresse.class)
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	public Adresse update(@RequestBody Adresse adresse, @PathVariable Long id) {
+		if (!adresseRepo.existsById(id)) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
+		}
+
+		adresse = adresseRepo.save(adresse);
+
+		return adresse;
+	}
+	
+	@PutMapping("/{id}")
+	@JsonView(Views.ViewAdresse.class)
+	@PreAuthorize("hasAnyRole('UTILISATEUR')")
+	public Adresse updateMy(@RequestBody Adresse adresse, @PathVariable Long id) {
 		if (!adresseRepo.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
@@ -70,7 +110,17 @@ public class AdresseRestController {
 	}
 
 	@DeleteMapping("/{id}")
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	public void delete(@PathVariable Long id) {
+		if (!adresseRepo.existsById(id)) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
+		}
+		
+		adresseRepo.deleteById(id);
+	}
+	@DeleteMapping("/my/{id}")
+	@PreAuthorize("hasAnyRole('UTILISATEUR')")
+	public void deleteMy(@PathVariable Long id) {
 		if (!adresseRepo.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}

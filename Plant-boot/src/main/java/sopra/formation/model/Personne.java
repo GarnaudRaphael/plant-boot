@@ -32,14 +32,17 @@ public abstract class Personne {
 	private String motDePasse;
 	@JsonView(Views.ViewCommon.class)
 	private String pseudo;
+	@JsonView(Views.ViewCommon.class)
+	private boolean enable;
 	
 	
 	public Personne() {
 		super();
 	}
 
+
 	public Personne(Long id, int version, String nom, String prenom, String adresseMail, String motDePasse,
-			String pseudo) {
+			String pseudo, boolean enable) {
 		super();
 		this.id = id;
 		this.version = version;
@@ -48,8 +51,23 @@ public abstract class Personne {
 		this.adresseMail = adresseMail;
 		this.motDePasse = motDePasse;
 		this.pseudo = pseudo;
+		this.enable = enable;
 	}
 
+
+	public boolean isEnable() {
+		return enable;
+	}
+
+
+	public void setEnable(boolean enable) {
+		this.enable = enable;
+	}
+
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
 
 
 	public int getVersion() {
