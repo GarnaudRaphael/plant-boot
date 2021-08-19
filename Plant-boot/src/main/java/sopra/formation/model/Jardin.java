@@ -45,7 +45,7 @@ public class Jardin {
 		super();
 	}
 	
-	public Jardin(Long id, List<DejaPlante> dejaPlante, Sol sol, Exposition exposition, String superficie,
+	public Jardin(Long id, List<DejaPlante> dejaPlante, Sol sol, Exposition exposition, Integer superficie,
 			Utilisateur utilisateur, List<RecetteJardin> recetteJardin, Meteo meteo) {
 		this.id = id;
 		this.dejaPlante = dejaPlante;
