@@ -12,8 +12,9 @@ public class Admin extends Personne {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Admin(String nom, String prenom, String adresseMail, String motDePasse, String pseudo) {
-		super(nom, prenom, adresseMail, motDePasse, pseudo);
+	public Admin(Long id, Long version, String nom, String prenom, String adresseMail, String motDePasse,
+			String pseudo) {
+		super(id, version, nom, prenom, adresseMail, motDePasse, pseudo);
 		// TODO Auto-generated constructor stub
 	}
 

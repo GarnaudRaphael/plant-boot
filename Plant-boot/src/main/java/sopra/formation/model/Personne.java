@@ -7,31 +7,56 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Version;
+
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type")
-public class Personne {
+public abstract class Personne {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.TABLE)
+	@JsonView(Views.ViewCommon.class)
 	private Long id;
+	@Version
+	@JsonView(Views.ViewCommon.class)
+	private int version;
+	@JsonView(Views.ViewPersonne.class)
 	private String nom;
+	@JsonView(Views.ViewPersonne.class)
 	private String prenom;
+	@JsonView(Views.ViewPersonne.class)
 	private String adresseMail;
+	@JsonView(Views.ViewPersonne.class)
 	private String motDePasse;
+	@JsonView(Views.ViewCommon.class)
 	private String pseudo;
 	
 	
 	public Personne() {
 		super();
 	}
-	public Personne(String nom, String prenom, String adresseMail, String motDePasse, String pseudo) {
+	
+	public Personne(Long id, Long version, String nom, String prenom, String adresseMail, String motDePasse,
+			String pseudo) {
 		super();
+		this.id = id;
+		Version = version;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.adresseMail = adresseMail;
 		this.motDePasse = motDePasse;
 		this.pseudo = pseudo;
+	}
+
+
+
+	public Long getVersion() {
+		return Version;
+	}
+	public void setVersion(Long version) {
+		Version = version;
 	}
 	public Long getId() {
 		return id;
