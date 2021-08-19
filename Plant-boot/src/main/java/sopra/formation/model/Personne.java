@@ -7,6 +7,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Version;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
@@ -15,18 +16,19 @@ import com.fasterxml.jackson.annotation.JsonView;
 @DiscriminatorColumn(name = "type")
 public abstract class Personne {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.TABLE)
 	@JsonView(Views.ViewCommon.class)
 	private Long id;
+	@Version
 	@JsonView(Views.ViewCommon.class)
-	private Long Version;
-	@JsonView(Views.ViewCommon.class)
+	private int version;
+	@JsonView(Views.ViewPersonne.class)
 	private String nom;
-	@JsonView(Views.ViewCommon.class)
+	@JsonView(Views.ViewPersonne.class)
 	private String prenom;
-	@JsonView(Views.ViewCommon.class)
+	@JsonView(Views.ViewPersonne.class)
 	private String adresseMail;
-	@JsonView(Views.ViewCommon.class)
+	@JsonView(Views.ViewPersonne.class)
 	private String motDePasse;
 	@JsonView(Views.ViewCommon.class)
 	private String pseudo;
