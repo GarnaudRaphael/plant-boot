@@ -8,37 +8,61 @@ import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
 @Entity
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @DiscriminatorColumn(name = "type")
-public class Personne {
+public abstract class Personne {
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	private Long id;
+	@GeneratedValue(strategy=GenerationType.TABLE)
+	@JsonView(Views.ViewCommon.class)
+	private int id;
+	@JsonView(Views.ViewCommon.class)
+	private int version;
+	@JsonView(Views.ViewPersonne.class)
 	private String nom;
+	@JsonView(Views.ViewPersonne.class)
 	private String prenom;
+	@JsonView(Views.ViewPersonne.class)
 	private String adresseMail;
+	@JsonView(Views.ViewPersonne.class)
 	private String motDePasse;
+	@JsonView(Views.ViewCommon.class)
 	private String pseudo;
 	
 	
 	public Personne() {
 		super();
 	}
-	public Personne(String nom, String prenom, String adresseMail, String motDePasse, String pseudo) {
+
+	public Personne(int id, int version, String nom, String prenom, String adresseMail, String motDePasse,
+			String pseudo) {
 		super();
+		this.id = id;
+		version = version;
 		this.nom = nom;
 		this.prenom = prenom;
 		this.adresseMail = adresseMail;
 		this.motDePasse = motDePasse;
 		this.pseudo = pseudo;
 	}
-	public Long getId() {
+
+	public int getVersion() {
+		return version;
+	}
+	public void setVersion(int version) {
+		version = version;
+	}
+
+	public int getId() {
 		return id;
 	}
-	public void setId(Long id) {
+
+	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getNom() {
 		return nom;
 	}
