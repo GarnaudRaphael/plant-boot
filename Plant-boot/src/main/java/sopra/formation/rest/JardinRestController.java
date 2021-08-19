@@ -18,63 +18,63 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import sopra.formation.model.Adresse;
+import sopra.formation.model.Jardin;
 import sopra.formation.model.Views;
-import sopra.formation.repository.IAdresseRepository;
+import sopra.formation.repository.IJardinRepository;
 
 @RestController
-@RequestMapping("/adresse")
+@RequestMapping("/jardin")
 @CrossOrigin("*")
-public class AdresseRestController {
+public class JardinRestController {
 
 	@Autowired
-	private IAdresseRepository adresseRepo;
+	private IJardinRepository jardinRepo;
 
 	@GetMapping("")
-	@JsonView(Views.ViewAdresse.class)
-	public List<Adresse> findAll() {
-		return adresseRepo.findAllAdresse();
+	@JsonView(Views.ViewJardin.class)
+	public List<Jardin> findAll() {
+		return jardinRepo.findAll();
 	}
 
 	@GetMapping("/{id}")
-	@JsonView(Views.ViewAdresse.class)
-	public Adresse find(@PathVariable Long id) {
+	@JsonView(Views.ViewJardin.class)
+	public Jardin find(@PathVariable Long id) {
 
-		Optional<Adresse> optAdresse = adresseRepo.findAdresseById(id);
-
-		if (optAdresse.isPresent()) {
-			return optAdresse.get();
+		Optional<Jardin> optJardin = jardinRepo.findById(id);
+	
+		if (optJardin.isPresent()) {
+			return optJardin.get();
 		} else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
 	}
 
 	@PostMapping("")
-	@JsonView(Views.ViewAdresse.class)
-	public Adresse create(@RequestBody Adresse adresse) {
-		adresse = adresseRepo.save(adresse);
+	@JsonView(Views.ViewJardin.class)
+	public Jardin create(@RequestBody Jardin jardin) {
+		jardin = jardinRepo.save(jardin);
 
-		return adresse;
+		return jardin;
 	}
 
 	@PutMapping("/{id}")
-	@JsonView(Views.ViewAdresse.class)
-	public Adresse update(@RequestBody Adresse adresse, @PathVariable Long id) {
-		if (!adresseRepo.existsById(id)) {
+	@JsonView(Views.ViewJardin.class)
+	public Jardin update(@RequestBody Jardin jardin, @PathVariable Long id) {
+		if (!jardinRepo.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
 
-		adresse = adresseRepo.save(adresse);
+		jardin = jardinRepo.save(jardin);
 
-		return adresse;
+		return jardin;
 	}
 
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
-		if (!adresseRepo.existsById(id)) {
+		if (!jardinRepo.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
 		
-		adresseRepo.deleteById(id);
+		jardinRepo.deleteById(id);
 	}
 }

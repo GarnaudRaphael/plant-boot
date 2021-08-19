@@ -18,63 +18,63 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import sopra.formation.model.Adresse;
+import sopra.formation.model.Commentaire;
 import sopra.formation.model.Views;
-import sopra.formation.repository.IAdresseRepository;
+import sopra.formation.repository.ICommentaireRepository;
 
 @RestController
-@RequestMapping("/adresse")
+@RequestMapping("/commentaire")
 @CrossOrigin("*")
-public class AdresseRestController {
+public class CommentaireRestController {
 
 	@Autowired
-	private IAdresseRepository adresseRepo;
+	private ICommentaireRepository commentaireRepo;
 
 	@GetMapping("")
-	@JsonView(Views.ViewAdresse.class)
-	public List<Adresse> findAll() {
-		return adresseRepo.findAllAdresse();
+	@JsonView(Views.ViewCommentaire.class)
+	public List<Commentaire> findAll() {
+		return commentaireRepo.findAll();
 	}
 
 	@GetMapping("/{id}")
-	@JsonView(Views.ViewAdresse.class)
-	public Adresse find(@PathVariable Long id) {
+	@JsonView(Views.ViewCommentaire.class)
+	public Commentaire find(@PathVariable Long id) {
 
-		Optional<Adresse> optAdresse = adresseRepo.findAdresseById(id);
-
-		if (optAdresse.isPresent()) {
-			return optAdresse.get();
+		Optional<Commentaire> optCommentaire = commentaireRepo.findById(id);
+	
+		if (optCommentaire.isPresent()) {
+			return optCommentaire.get();
 		} else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
 	}
 
 	@PostMapping("")
-	@JsonView(Views.ViewAdresse.class)
-	public Adresse create(@RequestBody Adresse adresse) {
-		adresse = adresseRepo.save(adresse);
+	@JsonView(Views.ViewCommentaire.class)
+	public Commentaire create(@RequestBody Commentaire commentaire) {
+		commentaire = commentaireRepo.save(commentaire);
 
-		return adresse;
+		return commentaire;
 	}
 
 	@PutMapping("/{id}")
-	@JsonView(Views.ViewAdresse.class)
-	public Adresse update(@RequestBody Adresse adresse, @PathVariable Long id) {
-		if (!adresseRepo.existsById(id)) {
+	@JsonView(Views.ViewCommentaire.class)
+	public Commentaire update(@RequestBody Commentaire commentaire, @PathVariable Long id) {
+		if (!commentaireRepo.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
 
-		adresse = adresseRepo.save(adresse);
+		commentaire = commentaireRepo.save(commentaire);
 
-		return adresse;
+		return commentaire;
 	}
 
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
-		if (!adresseRepo.existsById(id)) {
+		if (!commentaireRepo.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
 		
-		adresseRepo.deleteById(id);
+		commentaireRepo.deleteById(id);
 	}
 }

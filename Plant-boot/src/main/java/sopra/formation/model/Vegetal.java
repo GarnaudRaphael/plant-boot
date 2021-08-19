@@ -77,7 +77,7 @@ public class Vegetal {
 		super();
 	}
 
-	public Vegetal(Long id, Nature nature, TempsDeVie tempsDeVie, Presentation presentation, Sol sol,
+	public Vegetal(Long id, int version, Nature nature, TempsDeVie tempsDeVie, Presentation presentation, Sol sol,
 			Comportement comportement, Utilite utilite, TypeDeFeuille typeDeFeuille, TempsDeFeuille tempsDeFeuille,
 			UtiliteOrnement utiliteOrnement, UtiliteGastronomie utiliteGastronomie, Couleur couleur,
 			UtiliteComposition utiliteComposition, UtiliteCimetiere utiliteCimetiere, Long consommationEau,
@@ -85,6 +85,7 @@ public class Vegetal {
 			List<Commentaire> commentaire, List<Article> article, Notice notice) {
 		super();
 		this.id = id;
+		this.version = version;
 		this.nature = nature;
 		this.tempsDeVie = tempsDeVie;
 		this.presentation = presentation;
@@ -107,6 +108,16 @@ public class Vegetal {
 		this.commentaire = commentaire;
 		this.article = article;
 		this.notice = notice;
+	}
+
+
+
+	public int getVersion() {
+		return version;
+	}
+
+	public void setVersion(int version) {
+		this.version = version;
 	}
 
 	public Long getId() {

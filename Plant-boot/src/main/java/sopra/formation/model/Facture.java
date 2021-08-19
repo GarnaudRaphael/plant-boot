@@ -6,17 +6,27 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
+import javax.persistence.Version;
+
+import com.fasterxml.jackson.annotation.JsonView;
 
 @Entity
 public class Facture {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@JsonView(Views.ViewCommon.class)
 	private Long id;
+	@Version
+	@JsonView(Views.ViewCommon.class)
+	private int version;
+	@JsonView(Views.ViewCommon.class)
 	private Long montant;
 	@OneToOne(mappedBy="facture")
+	@JsonView(Views.ViewFacture.class)
 	private Commande commande;
 	@OneToOne
 	@JoinColumn(name="factureGuideUtilisation")
+	@JsonView(Views.ViewFacture.class)
 	private GuideUtilisation guideUtilisation;
 	
 	public Facture() {

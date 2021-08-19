@@ -21,11 +21,11 @@ public class Adresse {
 	@JsonView(Views.ViewCommon.class)
 	private int version;
 	@JsonView(Views.ViewCommon.class)
-	private Long numero;
+	private String numero;
 	@JsonView(Views.ViewCommon.class)
 	private String rue;
 	@JsonView(Views.ViewCommon.class)
-	private Long codePostal;
+	private String codePostal;
 	@JsonView(Views.ViewCommon.class)
 	private String ville;
 	@ManyToOne
@@ -36,13 +36,26 @@ public class Adresse {
 		super();
 	}
 	
-	public Adresse(Long numero, String rue, Long codePostal, String ville) {
-		super();
-		this.numero = numero;
-		this.rue = rue;
-		this.codePostal = codePostal;
-		this.ville = ville;
+	
+	public int getVersion() {
+		return version;
 	}
+
+
+	public void setVersion(int version) {
+		this.version = version;
+	}
+
+
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+
+
+	public void setCodePostal(String codePostal) {
+		this.codePostal = codePostal;
+	}
+
 
 
 	public Utilisateur getUtilisateur() {
@@ -58,32 +71,43 @@ public class Adresse {
 	public Long getId() {
 		return id;
 	}
+
+
 	public void setId(Long id) {
 		this.id = id;
 	}
-	public Long getNumero() {
-		return numero;
-	}
-	public void setNumero(Long numero) {
-		this.numero = numero;
-	}
+
+
 	public String getRue() {
 		return rue;
 	}
+
+
 	public void setRue(String rue) {
 		this.rue = rue;
 	}
-	public Long getCodePostal() {
-		return codePostal;
-	}
-	public void setCodePostal(Long codePostal) {
-		this.codePostal = codePostal;
-	}
+
+
 	public String getVille() {
 		return ville;
 	}
+
+
 	public void setVille(String ville) {
 		this.ville = ville;
 	}
+
+
+	public String getNumero() {
+		return numero;
+	}
+
+
+	public String getCodePostal() {
+		return codePostal;
+	}
+
+
+	
 	
 }

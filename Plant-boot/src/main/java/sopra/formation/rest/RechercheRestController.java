@@ -18,63 +18,63 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import sopra.formation.model.Adresse;
+import sopra.formation.model.Recherche;
 import sopra.formation.model.Views;
-import sopra.formation.repository.IAdresseRepository;
+import sopra.formation.repository.IRechercheRepository;
 
 @RestController
-@RequestMapping("/adresse")
+@RequestMapping("/recherche")
 @CrossOrigin("*")
-public class AdresseRestController {
+public class RechercheRestController {
 
 	@Autowired
-	private IAdresseRepository adresseRepo;
+	private IRechercheRepository rechercheRepo;
 
 	@GetMapping("")
-	@JsonView(Views.ViewAdresse.class)
-	public List<Adresse> findAll() {
-		return adresseRepo.findAllAdresse();
+	@JsonView(Views.ViewRecherche.class)
+	public List<Recherche> findAll() {
+		return rechercheRepo.findAll();
 	}
 
 	@GetMapping("/{id}")
-	@JsonView(Views.ViewAdresse.class)
-	public Adresse find(@PathVariable Long id) {
+	@JsonView(Views.ViewRecherche.class)
+	public Recherche find(@PathVariable Long id) {
 
-		Optional<Adresse> optAdresse = adresseRepo.findAdresseById(id);
-
-		if (optAdresse.isPresent()) {
-			return optAdresse.get();
+		Optional<Recherche> optRecherche = rechercheRepo.findById(id);
+	
+		if (optRecherche.isPresent()) {
+			return optRecherche.get();
 		} else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
 	}
 
 	@PostMapping("")
-	@JsonView(Views.ViewAdresse.class)
-	public Adresse create(@RequestBody Adresse adresse) {
-		adresse = adresseRepo.save(adresse);
+	@JsonView(Views.ViewRecherche.class)
+	public Recherche create(@RequestBody Recherche recherche) {
+		recherche = rechercheRepo.save(recherche);
 
-		return adresse;
+		return recherche;
 	}
 
 	@PutMapping("/{id}")
-	@JsonView(Views.ViewAdresse.class)
-	public Adresse update(@RequestBody Adresse adresse, @PathVariable Long id) {
-		if (!adresseRepo.existsById(id)) {
+	@JsonView(Views.ViewRecherche.class)
+	public Recherche update(@RequestBody Recherche recherche, @PathVariable Long id) {
+		if (!rechercheRepo.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
 
-		adresse = adresseRepo.save(adresse);
+		recherche = rechercheRepo.save(recherche);
 
-		return adresse;
+		return recherche;
 	}
 
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
-		if (!adresseRepo.existsById(id)) {
+		if (!rechercheRepo.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
 		
-		adresseRepo.deleteById(id);
+		rechercheRepo.deleteById(id);
 	}
 }

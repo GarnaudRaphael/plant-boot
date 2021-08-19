@@ -13,8 +13,6 @@ import com.fasterxml.jackson.annotation.JsonView;
 @DiscriminatorValue("utilisateur")
 public class Utilisateur extends Personne {
 	@JsonView(Views.ViewCommon.class)
-	private int version;
-	@JsonView(Views.ViewCommon.class)
 	@Column(name = "numeroTelephone")
 	private String numeroTelephone;
 	@OneToMany(mappedBy="utilisateur")
@@ -37,11 +35,15 @@ public class Utilisateur extends Personne {
 		super();
 	}
 
-	
+	public Utilisateur(Long id, Long version, String nom, String prenom, String adresseMail, String motDePasse,
+			String pseudo) {
+		super(id, version, nom, prenom, adresseMail, motDePasse, pseudo);
+		// TODO Auto-generated constructor stub
+	}
+
 	public Utilisateur(int version, String numeroTelephone, List<Adresse> adresse, List<Jardin> jardin,
 			List<Devis> devis, List<Recherche> recherche, List<Commentaire> commentaire) {
 		super();
-		this.version = version;
 		this.numeroTelephone = numeroTelephone;
 		this.adresse = adresse;
 		this.jardin = jardin;
@@ -51,23 +53,14 @@ public class Utilisateur extends Personne {
 	}
 
 
+
+
 	public String getNumeroTelephone() {
 		return numeroTelephone;
 	}
 	public void setNumeroTelephone(String numeroTelephone) {
 		this.numeroTelephone = numeroTelephone;
 	}
-
-
-	public int getVersion() {
-		return version;
-	}
-
-
-	public void setVersion(int version) {
-		this.version = version;
-	}
-
 
 	public List<Adresse> getAdresse() {
 		return adresse;

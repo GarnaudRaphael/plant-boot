@@ -18,63 +18,63 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import sopra.formation.model.Adresse;
+import sopra.formation.model.Article;
 import sopra.formation.model.Views;
-import sopra.formation.repository.IAdresseRepository;
+import sopra.formation.repository.IArticleRepository;
 
 @RestController
-@RequestMapping("/adresse")
+@RequestMapping("/article")
 @CrossOrigin("*")
-public class AdresseRestController {
+public class ArticleRestController {
 
 	@Autowired
-	private IAdresseRepository adresseRepo;
+	private IArticleRepository articleRepo;
 
 	@GetMapping("")
-	@JsonView(Views.ViewAdresse.class)
-	public List<Adresse> findAll() {
-		return adresseRepo.findAllAdresse();
+	@JsonView(Views.ViewArticle.class)
+	public List<Article> findAll() {
+		return articleRepo.findAll();
 	}
 
 	@GetMapping("/{id}")
-	@JsonView(Views.ViewAdresse.class)
-	public Adresse find(@PathVariable Long id) {
+	@JsonView(Views.ViewArticle.class)
+	public Article find(@PathVariable Long id) {
 
-		Optional<Adresse> optAdresse = adresseRepo.findAdresseById(id);
-
-		if (optAdresse.isPresent()) {
-			return optAdresse.get();
+		Optional<Article> optArticle = articleRepo.findById(id);
+	
+		if (optArticle.isPresent()) {
+			return optArticle.get();
 		} else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
 	}
 
 	@PostMapping("")
-	@JsonView(Views.ViewAdresse.class)
-	public Adresse create(@RequestBody Adresse adresse) {
-		adresse = adresseRepo.save(adresse);
+	@JsonView(Views.ViewArticle.class)
+	public Article create(@RequestBody Article article) {
+		article = articleRepo.save(article);
 
-		return adresse;
+		return article;
 	}
 
 	@PutMapping("/{id}")
-	@JsonView(Views.ViewAdresse.class)
-	public Adresse update(@RequestBody Adresse adresse, @PathVariable Long id) {
-		if (!adresseRepo.existsById(id)) {
+	@JsonView(Views.ViewArticle.class)
+	public Article update(@RequestBody Article article, @PathVariable Long id) {
+		if (!articleRepo.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
 
-		adresse = adresseRepo.save(adresse);
+		article = articleRepo.save(article);
 
-		return adresse;
+		return article;
 	}
 
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
-		if (!adresseRepo.existsById(id)) {
+		if (!articleRepo.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
 		
-		adresseRepo.deleteById(id);
+		articleRepo.deleteById(id);
 	}
 }

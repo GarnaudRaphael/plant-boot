@@ -18,63 +18,63 @@ import org.springframework.web.server.ResponseStatusException;
 
 import com.fasterxml.jackson.annotation.JsonView;
 
-import sopra.formation.model.Adresse;
+import sopra.formation.model.Recette;
 import sopra.formation.model.Views;
-import sopra.formation.repository.IAdresseRepository;
+import sopra.formation.repository.IRecetteRepository;
 
 @RestController
-@RequestMapping("/adresse")
+@RequestMapping("/recette")
 @CrossOrigin("*")
-public class AdresseRestController {
+public class RecetteRestController {
 
 	@Autowired
-	private IAdresseRepository adresseRepo;
+	private IRecetteRepository recetteRepo;
 
 	@GetMapping("")
-	@JsonView(Views.ViewAdresse.class)
-	public List<Adresse> findAll() {
-		return adresseRepo.findAllAdresse();
+	@JsonView(Views.ViewRecette.class)
+	public List<Recette> findAll() {
+		return recetteRepo.findAll();
 	}
 
 	@GetMapping("/{id}")
-	@JsonView(Views.ViewAdresse.class)
-	public Adresse find(@PathVariable Long id) {
+	@JsonView(Views.ViewRecette.class)
+	public Recette find(@PathVariable Long id) {
 
-		Optional<Adresse> optAdresse = adresseRepo.findAdresseById(id);
-
-		if (optAdresse.isPresent()) {
-			return optAdresse.get();
+		Optional<Recette> optRecette = recetteRepo.findById(id);
+	
+		if (optRecette.isPresent()) {
+			return optRecette.get();
 		} else {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
 	}
 
 	@PostMapping("")
-	@JsonView(Views.ViewAdresse.class)
-	public Adresse create(@RequestBody Adresse adresse) {
-		adresse = adresseRepo.save(adresse);
+	@JsonView(Views.ViewRecette.class)
+	public Recette create(@RequestBody Recette recette) {
+		recette = recetteRepo.save(recette);
 
-		return adresse;
+		return recette;
 	}
 
 	@PutMapping("/{id}")
-	@JsonView(Views.ViewAdresse.class)
-	public Adresse update(@RequestBody Adresse adresse, @PathVariable Long id) {
-		if (!adresseRepo.existsById(id)) {
+	@JsonView(Views.ViewRecette.class)
+	public Recette update(@RequestBody Recette recette, @PathVariable Long id) {
+		if (!recetteRepo.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
 
-		adresse = adresseRepo.save(adresse);
+		recette = recetteRepo.save(recette);
 
-		return adresse;
+		return recette;
 	}
 
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
-		if (!adresseRepo.existsById(id)) {
+		if (!recetteRepo.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
 		
-		adresseRepo.deleteById(id);
+		recetteRepo.deleteById(id);
 	}
 }
