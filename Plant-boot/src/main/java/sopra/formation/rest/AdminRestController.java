@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -29,6 +30,7 @@ public class AdminRestController {
 	private IAdminRepository AdminRepo;
 
 	@GetMapping("")
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@JsonView(Views.ViewAdmin.class)
 	public List<Admin> findAll() {
 		return AdminRepo.findAll();
@@ -36,6 +38,7 @@ public class AdminRestController {
 	
 
 	@GetMapping("/{id}")
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@JsonView(Views.ViewAdmin.class)
 	public Admin find(@PathVariable Long id) {
 
@@ -50,14 +53,15 @@ public class AdminRestController {
 	
 
 	@PostMapping("")
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@JsonView(Views.ViewAdmin.class)
 	public Admin create(@RequestBody Admin Admin) {
 		Admin = AdminRepo.save(Admin);
-
 		return Admin;
 	}
 
 	@PutMapping("/{id}")
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	@JsonView(Views.ViewAdmin.class)
 	public Admin update(@RequestBody Admin Admin, @PathVariable Long id) {
 		if (!AdminRepo.existsById(id)) {
@@ -96,6 +100,7 @@ public class AdminRestController {
 //	}
 	
 	@DeleteMapping("/{id}")
+	@PreAuthorize("hasAnyRole('ADMIN')")
 	public void delete(@PathVariable Long id) {
 		if (!AdminRepo.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
