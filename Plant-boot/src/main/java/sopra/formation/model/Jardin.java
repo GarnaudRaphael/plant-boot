@@ -22,18 +22,25 @@ public class Jardin {
 	private Utilisateur utilisateur;
 	@OneToMany(mappedBy="jardin")
 	private List<RecetteJardin> recetteJardin;
-	
+	@ManyToOne
+	@JoinColumn(name="meteo")
+	private Meteo meteo;
 	public Jardin() {
 		super();
 	}
-	public Jardin(Long id, List<DejaPlante> dejaPlante, Sol sol, Exposition exposition, String superficie) {
-		super();
+	
+	public Jardin(Long id, List<DejaPlante> dejaPlante, Sol sol, Exposition exposition, String superficie,
+			Utilisateur utilisateur, List<RecetteJardin> recetteJardin, Meteo meteo) {
 		this.id = id;
 		this.dejaPlante = dejaPlante;
 		this.sol = sol;
 		this.exposition = exposition;
 		this.superficie = superficie;
+		this.utilisateur = utilisateur;
+		this.recetteJardin = recetteJardin;
+		this.meteo = meteo;
 	}
+
 	public Long getId() {
 		return id;
 	}
@@ -64,5 +71,31 @@ public class Jardin {
 	public void setSuperficie(String superficie) {
 		this.superficie = superficie;
 	}
+
+	public Utilisateur getUtilisateur() {
+		return utilisateur;
+	}
+
+	public void setUtilisateur(Utilisateur utilisateur) {
+		this.utilisateur = utilisateur;
+	}
+
+	public List<RecetteJardin> getRecetteJardin() {
+		return recetteJardin;
+	}
+
+	public void setRecetteJardin(List<RecetteJardin> recetteJardin) {
+		this.recetteJardin = recetteJardin;
+	}
+
+	public Meteo getMeteo() {
+		return meteo;
+	}
+
+	public void setMeteo(Meteo meteo) {
+		this.meteo = meteo;
+	}
 	
+	
+
 }
