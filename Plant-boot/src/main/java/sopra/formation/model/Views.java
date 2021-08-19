@@ -6,6 +6,7 @@ public class Views {
 	public static class ViewVegetal extends ViewCommon {}
 	public static class ViewAdresse extends ViewCommon {}
 	public static class ViewCommande extends ViewCommon {}
+	public static class ViewAdmin extends ViewCommon {}
 }
 	public static class ViewUtilisateur extends ViewCommon {}
 
