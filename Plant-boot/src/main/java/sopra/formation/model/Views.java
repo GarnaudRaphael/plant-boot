@@ -14,4 +14,5 @@ public class Views {
 	public static class ViewAdmin extends ViewPersonne {}
 	public static class ViewUtilisateur extends ViewPersonne {}
 	public static class ViewCommentaire extends ViewCommon {}
+	public static class ViewRecherche extends ViewCommon {}
 }

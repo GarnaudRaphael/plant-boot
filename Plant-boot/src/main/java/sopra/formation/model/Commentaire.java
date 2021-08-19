@@ -33,6 +33,10 @@ public class Commentaire {
 	private String contenu;
 	
 	
+	public Commentaire() {
+		super();
+	}
+	
 	public Commentaire(Long id, int version, Utilisateur utilisateur, Vegetal vegetal, String contenu) {
 		super();
 		this.id = id;

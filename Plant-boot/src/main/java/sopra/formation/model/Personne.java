@@ -17,7 +17,7 @@ public abstract class Personne {
 	@Id
 	@GeneratedValue(strategy=GenerationType.TABLE)
 	@JsonView(Views.ViewCommon.class)
-	private int id;
+	private Long id;
 	@JsonView(Views.ViewCommon.class)
 	private int version;
 	@JsonView(Views.ViewPersonne.class)
@@ -57,11 +57,11 @@ public abstract class Personne {
 		version = version;
 	}
 
-	public int getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
