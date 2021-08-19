@@ -18,8 +18,7 @@ public abstract class Personne {
 	@Id
 	@GeneratedValue(strategy=GenerationType.TABLE)
 	@JsonView(Views.ViewCommon.class)
-	private Long id;
-	@Version
+	private int id;
 	@JsonView(Views.ViewCommon.class)
 	private int version;
 	@JsonView(Views.ViewPersonne.class)
@@ -37,8 +36,8 @@ public abstract class Personne {
 	public Personne() {
 		super();
 	}
-	
-	public Personne(Long id, Long version, String nom, String prenom, String adresseMail, String motDePasse,
+
+	public Personne(int id, Long version, String nom, String prenom, String adresseMail, String motDePasse,
 			String pseudo) {
 		super();
 		this.id = id;
@@ -50,20 +49,21 @@ public abstract class Personne {
 		this.pseudo = pseudo;
 	}
 
-
-
 	public Long getVersion() {
 		return Version;
 	}
 	public void setVersion(Long version) {
 		Version = version;
 	}
-	public Long getId() {
+
+	public int getId() {
 		return id;
 	}
-	public void setId(Long id) {
+
+	public void setId(int id) {
 		this.id = id;
 	}
+
 	public String getNom() {
 		return nom;
 	}
