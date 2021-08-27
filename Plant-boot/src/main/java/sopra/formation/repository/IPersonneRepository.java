@@ -17,5 +17,8 @@ public interface IPersonneRepository extends  JpaRepository<Personne,Long> {
 	
 	@Query("select a from Admin a where a.id = :id")
 	Optional<Admin> findAdminById(@Param("id") Long id);
+	
+	@Query("select p from Personne p where p.pseudo = :pseudo")
+	Optional<Personne> findByPseudo(@Param("pseudo") String pseudo);
 
 }
