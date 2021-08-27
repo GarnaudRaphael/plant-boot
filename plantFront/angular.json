@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "plantFront": {
+    "formation-angular": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -20,7 +20,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/plantFront",
+            "outputPath": "dist/formation-angular",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -35,9 +35,9 @@
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.js",
-              "node_modules/bootstrap/dist/js/bootstrap.bundle.js "
+              "node_modules/bootstrap/dist/js/bootstrap.bundle.js"
             ]
-
+          },
           "configurations": {
             "production": {
               "budgets": [
@@ -75,10 +75,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "plantFront:build:production"
+              "browserTarget": "formation-angular:build:production"
             },
             "development": {
-              "browserTarget": "plantFront:build:development"
+              "browserTarget": "formation-angular:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -86,7 +86,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "plantFront:build"
+            "browserTarget": "formation-angular:build"
           }
         },
         "test": {
@@ -110,5 +110,5 @@
       }
     }
   },
-  "defaultProject": "plantFront"
+  "defaultProject": "formation-angular"
 }

@@ -80,6 +80,9 @@ public class AdresseRestController {
 	public Adresse createMy(@RequestBody Adresse adresse) {
 		adresse = adresseRepo.save(adresse);
 
+		return adresse;
+	}
+
 	@PutMapping("/{id}")
 	@JsonView(Views.ViewAdresse.class)
 	//@PreAuthorize("hasAnyRole('ADMIN')")
@@ -100,6 +103,11 @@ public class AdresseRestController {
 		if (!adresseRepo.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
+
+		adresse = adresseRepo.save(adresse);
+
+		return adresse;
+	}
 
 	@DeleteMapping("/{id}")
 	//@PreAuthorize("hasAnyRole('ADMIN')")
