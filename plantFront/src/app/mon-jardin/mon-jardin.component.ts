@@ -1,8 +1,8 @@
 import {Component, HostListener, OnInit} from '@angular/core';
-import {Jardin} from "../model/jardin";
+import {Jardin} from "../../../../../../travail/test/Plant-Boot/src/app/model/jardin";
 import {MonJardinHttpService} from "./mon-jardin-http.service";
-import {Vegetal} from "../model/vegetal";
-import {DejaPlante} from "../model/dejaPlante";
+import {Vegetal} from "../../../../../../travail/test/Plant-Boot/src/app/model/vegetal";
+import {DejaPlante} from "../../../../../../travail/test/Plant-Boot/src/app/model/dejaPlante";
 import {DejaPlanteService} from "../deja-plante/deja-plante.service";
 import {VegetalHttpService} from "../vegetal/vegetal-http.service";
 
