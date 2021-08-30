@@ -61,7 +61,7 @@ export class RechercheAlternativeComponent implements OnInit {
       case 1:this.recherche.presentation=this.intermediaire[1];this.menuChoix(5);break;//menuComportement
     }
   }
-  menuPresentationExposition(res:number)//choix 3
+  menuExposition(res:number)//choix 3
   {
     this.appConfig.findAllExposition().subscribe(resp =>{this.intermediaire=resp;});
     switch (res) {
