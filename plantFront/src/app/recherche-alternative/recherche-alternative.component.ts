@@ -47,16 +47,27 @@ export class RechercheAlternativeComponent implements OnInit {
   }
   menuTempsDeVie(res:number)//choix 1
   {
+    this.appConfig.findAllTempsDeVie().subscribe(resp =>{this.intermediaire=resp;});
     switch (res) {
-      case 0:this.recherche.tempsDeVie=this.intermediaire[0];this.rechercheAlternative(this.recherche);break;//menuTempsDeVie
-      case 1:this.recherche.tempsDeVie=this.intermediaire[1];this.menuChoix(13);break;//menuUtilite
+      case 0:this.recherche.tempsDeVie=this.intermediaire[0];this.rechercheAlternative(this.recherche);break;//Fin
+      case 1:this.recherche.tempsDeVie=this.intermediaire[1];this.menuChoix(13);break;//menuUtiliteComposition
     }
   }
-  menuFleur(res:number)//choix 2
+  menuPresentationFleur(res:number)//choix 2
   {
+    this.appConfig.findAllPresentation().subscribe(resp =>{this.intermediaire=resp;});
     switch (res) {
-      case 0:this.recherche.tempsDeVie=this.intermediaire[0];this.rechercheAlternative(this.recherche);break;//menuTempsDeVie
-      case 1:this.recherche.tempsDeVie=this.intermediaire[1];this.menuChoix(13);break;//menuUtilite
+      case 0:this.recherche.presentation=this.intermediaire[0];this.menuChoix(4);break;//menuSol
+      case 1:this.recherche.presentation=this.intermediaire[1];this.menuChoix(5);break;//menuComportement
+    }
+  }
+  menuPresentationExposition(res:number)//choix 3
+  {
+    this.appConfig.findAllExposition().subscribe(resp =>{this.intermediaire=resp;});
+    switch (res) {
+      case 0:this.recherche.exposition=this.intermediaire[0];this.menuChoix(6);break;//menuSol
+      case 1:this.recherche.exposition=this.intermediaire[1];this.menuChoix(6);break;//menuComportement
+      case 2:this.recherche.exposition=this.intermediaire[2];this.menuChoix(6);break;//menuComportement
     }
   }
 
