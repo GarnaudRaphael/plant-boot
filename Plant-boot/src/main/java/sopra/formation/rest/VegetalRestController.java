@@ -21,17 +21,19 @@ import com.fasterxml.jackson.annotation.JsonView;
 import sopra.formation.model.Vegetal;
 import sopra.formation.model.Views;
 import sopra.formation.repository.IVegetalRepository;
+
+
 @RestController
 @RequestMapping("/vegetal")
 @CrossOrigin("*")
 public class VegetalRestController {
 	@Autowired
-	private IVegetalRepository VegetalRepo;
+	private IVegetalRepository vegetalRepo;
 
 	@GetMapping("")
 	@JsonView(Views.ViewVegetal.class)
 	public List<Vegetal> findAll() {
-		return VegetalRepo.findAll();
+		return vegetalRepo.findAll();
 	}
 	
 
@@ -39,8 +41,21 @@ public class VegetalRestController {
 	@JsonView(Views.ViewVegetal.class)
 	public Vegetal find(@PathVariable Long id) {
 
-		Optional<Vegetal> optVegetal = VegetalRepo.findById(id);
+		Optional<Vegetal> optVegetal = vegetalRepo.findById(id);
 	
+		if (optVegetal.isPresent()) {
+			return optVegetal.get();
+		} else {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
+		}
+	}
+	
+	@GetMapping("/{id}/{nom}")
+	@JsonView(Views.ViewVegetalWithNom.class)
+	public Vegetal findWithNom(@PathVariable String nom) {
+
+		Optional<Vegetal> optVegetal = vegetalRepo.findVegetalByNom(nom);
+
 		if (optVegetal.isPresent()) {
 			return optVegetal.get();
 		} else {
@@ -52,7 +67,7 @@ public class VegetalRestController {
 	@PostMapping("")
 	@JsonView(Views.ViewVegetal.class)
 	public Vegetal create(@RequestBody Vegetal Vegetal) {
-		Vegetal = VegetalRepo.save(Vegetal);
+		Vegetal = vegetalRepo.save(Vegetal);
 
 		return Vegetal;
 	}
@@ -60,11 +75,11 @@ public class VegetalRestController {
 	@PutMapping("/{id}")
 	@JsonView(Views.ViewVegetal.class)
 	public Vegetal update(@RequestBody Vegetal Vegetal, @PathVariable Long id) {
-		if (!VegetalRepo.existsById(id)) {
+		if (!vegetalRepo.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
 
-		Vegetal = VegetalRepo.save(Vegetal);
+		Vegetal = vegetalRepo.save(Vegetal);
 
 		return Vegetal;
 	}
@@ -97,10 +112,10 @@ public class VegetalRestController {
 	
 	@DeleteMapping("/{id}")
 	public void delete(@PathVariable Long id) {
-		if (!VegetalRepo.existsById(id)) {
+		if (!vegetalRepo.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");
 		}
 		
-		VegetalRepo.deleteById(id);
+		vegetalRepo.deleteById(id);
 	}
 }
