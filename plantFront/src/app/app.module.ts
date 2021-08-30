@@ -12,6 +12,7 @@ import { RechercheAlternativeComponent } from './recherche-alternative/recherche
 
 @NgModule({
   declarations: [
+    AccueilComponent
     AppComponent,
     MonJardinComponent,
     DejaPlanteComponent,
