@@ -25,6 +25,7 @@ public class Vegetal {
 	private int version;
 	@JsonView(Views.ViewCommon.class)
 	private String nom;
+	@JsonView({Views.ViewCommon.class, ViewVegetal.class})
 	private Long nombre;
 	@JsonView(Views.ViewCommon.class)
 	private String description;
