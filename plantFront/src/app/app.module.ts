@@ -6,13 +6,17 @@ import { AppComponent } from './app.component';
 import { MonJardinComponent } from './mon-jardin/mon-jardin.component';
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
-import { DejaPlanteComponent } from './deja-plante/deja-plante.component';
 import { VegetalComponent } from './vegetal/vegetal.component';
+import { DejaPlanteComponent } from './deja-plante/deja-plante.component';
 import { RechercheAlternativeComponent } from './recherche-alternative/recherche-alternative.component';
+import { AccueilComponent } from './accueil/accueil.component';
+import { BarreDeRechercheComponent } from './barre-de-recherche/barre-de-recherche.component';
 
 @NgModule({
   declarations: [
     AppComponent,
+    AccueilComponent,
+    BarreDeRechercheComponent
     MonJardinComponent,
     DejaPlanteComponent,
     VegetalComponent,

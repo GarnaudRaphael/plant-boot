@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a516266c-495e-4fa7-9536-a6942544aed2" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/plantFront/tsconfig.json" beforeDir="false" afterPath="$PROJECT_DIR$/plantFront/tsconfig.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plantFront/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/plantFront/src/app/app.module.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,7 +22,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/plantFront" />
     <property name="nodejs_package_manager_path" value="npm" />
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
@@ -35,6 +36,8 @@
       <workItem from="1630082015497" duration="36000" />
       <workItem from="1630082106775" duration="1327000" />
       <workItem from="1630307896139" duration="186000" />
+      <workItem from="1630308303946" duration="83000" />
+      <workItem from="1630308446979" duration="544000" />
     </task>
     <servers />
   </component>
