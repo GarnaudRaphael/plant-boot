@@ -30,7 +30,7 @@ public class AdminRestController {
 	private IAdminRepository AdminRepo;
 
 	@GetMapping("")
-	//@PreAuthorize("hasAnyRole('ADMIN')")
+//	@PreAuthorize("hasAnyRole('ADMIN')")
 	@JsonView(Views.ViewAdmin.class)
 	public List<Admin> findAll() {
 		return AdminRepo.findAll();
@@ -38,7 +38,7 @@ public class AdminRestController {
 	
 
 	@GetMapping("/{id}")
-	//@PreAuthorize("hasAnyRole('ADMIN')")
+//	@PreAuthorize("hasAnyRole('ADMIN')")
 	@JsonView(Views.ViewAdmin.class)
 	public Admin find(@PathVariable Long id) {
 
@@ -53,7 +53,7 @@ public class AdminRestController {
 	
 
 	@PostMapping("")
-	//@PreAuthorize("hasAnyRole('ADMIN')")
+//	@PreAuthorize("hasAnyRole('ADMIN')")
 	@JsonView(Views.ViewAdmin.class)
 	public Admin create(@RequestBody Admin Admin) {
 		Admin = AdminRepo.save(Admin);
@@ -61,7 +61,7 @@ public class AdminRestController {
 	}
 
 	@PutMapping("/{id}")
-	//@PreAuthorize("hasAnyRole('ADMIN')")
+//	@PreAuthorize("hasAnyRole('ADMIN')")
 	@JsonView(Views.ViewAdmin.class)
 	public Admin update(@RequestBody Admin Admin, @PathVariable Long id) {
 		if (!AdminRepo.existsById(id)) {
@@ -100,7 +100,7 @@ public class AdminRestController {
 //	}
 	
 	@DeleteMapping("/{id}")
-	//@PreAuthorize("hasAnyRole('ADMIN')")
+//	@PreAuthorize("hasAnyRole('ADMIN')")
 	public void delete(@PathVariable Long id) {
 		if (!AdminRepo.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");

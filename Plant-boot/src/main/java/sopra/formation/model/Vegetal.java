@@ -12,16 +12,23 @@ import javax.persistence.OneToMany;
 import javax.persistence.Version;
 
 import com.fasterxml.jackson.annotation.JsonView;
+
+import sopra.formation.model.Views.ViewVegetal;
 @Entity
 public class Vegetal {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@JsonView(Views.ViewCommon.class)
+	@JsonView({Views.ViewCommon.class, ViewVegetal.class})
 	private Long id;
 	@Version
 	@JsonView(Views.ViewCommon.class)
 	private int version;
+	@JsonView(Views.ViewCommon.class)
 	private String nom;
+	private Long nombre;
+	@JsonView(Views.ViewCommon.class)
+	private String description;
+	@JsonView(Views.ViewCommon.class)
 	@JsonView(Views.ViewCommon.class)
 	private Nature nature;
 	@JsonView(Views.ViewCommon.class)
@@ -71,19 +78,16 @@ public class Vegetal {
 	private List<Article> article;
 	@ManyToOne
 	@JoinColumn(name="notice_id")
-	@JsonView(Views.ViewVegetal.class)
+	@JsonView(Views.ViewCommon.class)
 	private Notice notice;
 	
 	public Vegetal() {
 		super();
 	}
 
-	
 
-
-
-	public Vegetal(Long id, int version, String nom, Nature nature, TempsDeVie tempsDeVie, Presentation presentation,
-			Sol sol, Comportement comportement, Utilite utilite, TypeDeFeuille typeDeFeuille,
+	public Vegetal(Long id, int version, String nom, String description, Nature nature, TempsDeVie tempsDeVie,
+			Presentation presentation, Sol sol, Comportement comportement, Utilite utilite, TypeDeFeuille typeDeFeuille,
 			TempsDeFeuille tempsDeFeuille, UtiliteOrnement utiliteOrnement, UtiliteGastronomie utiliteGastronomie,
 			Couleur couleur, UtiliteComposition utiliteComposition, UtiliteCimetiere utiliteCimetiere,
 			Long consommationEau, Long consommationEngrais, Long prix, Long prixFruit, List<Vegetal> affinite,
@@ -92,6 +96,7 @@ public class Vegetal {
 		this.id = id;
 		this.version = version;
 		this.nom = nom;
+		this.description = description;
 		this.nature = nature;
 		this.tempsDeVie = tempsDeVie;
 		this.presentation = presentation;
@@ -116,8 +121,24 @@ public class Vegetal {
 		this.notice = notice;
 	}
 
+	public String getNom() {
+		return nom;
+	}
 
 
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 
 	public int getVersion() {
@@ -282,7 +303,5 @@ public class Vegetal {
 	public void setNom(String nom) {
 		this.nom = nom;
 	}
-	
-	
 	
 }
