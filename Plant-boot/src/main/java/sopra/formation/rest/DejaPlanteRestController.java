@@ -51,6 +51,7 @@ public class DejaPlanteRestController {
 	}
 	
 	@PostMapping("")
+	@JsonView(Views.ViewDejaPlante.class)
 	public DejaPlante create(@RequestBody DejaPlante dejaPlante) {
 		dejaPlante = dejaPlanteRepo.save(dejaPlante);
 
@@ -58,6 +59,7 @@ public class DejaPlanteRestController {
 	}
 
 	@PutMapping("/{id}")
+	@JsonView(Views.ViewDejaPlante.class)
 	public DejaPlante update(@RequestBody DejaPlante dejaPlante, @PathVariable Long id) {
 		if (!dejaPlanteRepo.existsById(id)) {
 			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Unable to find resource");

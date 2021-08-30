@@ -28,7 +28,7 @@ public class Recette {
 	@OneToMany(mappedBy="recette")
 	@JsonView(Views.ViewRecette.class)
 	private List<RecetteJardin> recetteJardin;
-	@JsonView(Views.ViewCommon.class)
+	@JsonView(Views.ViewRecette.class)
 	private String  methode;
 	
 	public Recette() {

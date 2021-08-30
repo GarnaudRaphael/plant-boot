@@ -22,15 +22,15 @@ public class Jardin {
 	@Version
 	@JsonView(Views.ViewCommon.class)
 	private int version;
-	@OneToMany(mappedBy="jardin")
-	@JsonView(Views.ViewJardin.class)
-	private List<DejaPlante> dejaPlante;
 	@JsonView(Views.ViewCommon.class)
 	private Sol sol;
 	@JsonView(Views.ViewCommon.class)
 	private Exposition exposition;
 	@JsonView(Views.ViewCommon.class)
 	private Integer superficie;
+	@OneToMany(mappedBy="jardin")
+	@JsonView(Views.ViewJardin.class)
+	private List<DejaPlante> dejaPlante;
 	@ManyToOne
 	@JoinColumn(name="jardin_id")
 	@JsonView(Views.ViewJardin.class)
