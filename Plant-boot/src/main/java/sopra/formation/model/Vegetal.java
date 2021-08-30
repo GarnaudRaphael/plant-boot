@@ -21,6 +21,7 @@ public class Vegetal {
 	@Version
 	@JsonView(Views.ViewCommon.class)
 	private int version;
+	private String nom;
 	@JsonView(Views.ViewCommon.class)
 	private Long nombre;
 	@JsonView(Views.ViewCommon.class)
@@ -293,5 +294,15 @@ public class Vegetal {
 	public void setNotice(Notice notice) {
 		this.notice = notice;
 	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	
+	
 	
 }
