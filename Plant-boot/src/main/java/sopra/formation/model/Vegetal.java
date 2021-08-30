@@ -21,6 +21,7 @@ public class Vegetal {
 	@Version
 	@JsonView(Views.ViewCommon.class)
 	private int version;
+	private String nom;
 	@JsonView(Views.ViewCommon.class)
 	private Nature nature;
 	@JsonView(Views.ViewCommon.class)
@@ -77,15 +78,20 @@ public class Vegetal {
 		super();
 	}
 
-	public Vegetal(Long id, int version, Nature nature, TempsDeVie tempsDeVie, Presentation presentation, Sol sol,
-			Comportement comportement, Utilite utilite, TypeDeFeuille typeDeFeuille, TempsDeFeuille tempsDeFeuille,
-			UtiliteOrnement utiliteOrnement, UtiliteGastronomie utiliteGastronomie, Couleur couleur,
-			UtiliteComposition utiliteComposition, UtiliteCimetiere utiliteCimetiere, Long consommationEau,
-			Long consommationEngrais, Long prix, Long prixFruit, List<Vegetal> affinite, List<DejaPlante> dejaPlante,
-			List<Commentaire> commentaire, List<Article> article, Notice notice) {
+	
+
+
+
+	public Vegetal(Long id, int version, String nom, Nature nature, TempsDeVie tempsDeVie, Presentation presentation,
+			Sol sol, Comportement comportement, Utilite utilite, TypeDeFeuille typeDeFeuille,
+			TempsDeFeuille tempsDeFeuille, UtiliteOrnement utiliteOrnement, UtiliteGastronomie utiliteGastronomie,
+			Couleur couleur, UtiliteComposition utiliteComposition, UtiliteCimetiere utiliteCimetiere,
+			Long consommationEau, Long consommationEngrais, Long prix, Long prixFruit, List<Vegetal> affinite,
+			List<DejaPlante> dejaPlante, List<Commentaire> commentaire, List<Article> article, Notice notice) {
 		super();
 		this.id = id;
 		this.version = version;
+		this.nom = nom;
 		this.nature = nature;
 		this.tempsDeVie = tempsDeVie;
 		this.presentation = presentation;
@@ -109,6 +115,8 @@ public class Vegetal {
 		this.article = article;
 		this.notice = notice;
 	}
+
+
 
 
 
@@ -266,5 +274,15 @@ public class Vegetal {
 	public void setNotice(Notice notice) {
 		this.notice = notice;
 	}
+
+	public String getNom() {
+		return nom;
+	}
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+	
+	
 	
 }
