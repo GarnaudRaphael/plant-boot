@@ -21,6 +21,7 @@ import { BarreDeRechercheComponent } from './barre-de-recherche/barre-de-recherc
     DejaPlanteComponent,
     VegetalComponent,
     RechercheAlternativeComponent,
+    BarreDeRechercheComponent
   ],
   imports: [
     BrowserModule,
