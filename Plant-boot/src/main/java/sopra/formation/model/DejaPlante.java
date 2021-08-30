@@ -23,11 +23,11 @@ public class DejaPlante {
 	private Long age;
 	@ManyToOne
 	@JoinColumn(name="jardin_id")
-	@JsonView(Views.ViewCommon.class)
+	@JsonView(Views.ViewDejaPlante.class)
 	private Jardin jardin;
 	@ManyToOne
 	@JoinColumn(name="vegetal_id")
-	@JsonView(Views.ViewCommon.class)
+	@JsonView({Views.ViewDejaPlante.class,Views.ViewJardin.class})
 	private Vegetal vegetal;
 	
 	public DejaPlante() {

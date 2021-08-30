@@ -22,6 +22,12 @@ public class Vegetal {
 	@JsonView(Views.ViewCommon.class)
 	private int version;
 	@JsonView(Views.ViewCommon.class)
+	private Long nombre;
+	@JsonView(Views.ViewCommon.class)
+	private String nom;
+	@JsonView(Views.ViewCommon.class)
+	private String description;
+	@JsonView(Views.ViewCommon.class)
 	private Nature nature;
 	@JsonView(Views.ViewCommon.class)
 	private TempsDeVie tempsDeVie;
@@ -77,15 +83,18 @@ public class Vegetal {
 		super();
 	}
 
-	public Vegetal(Long id, int version, Nature nature, TempsDeVie tempsDeVie, Presentation presentation, Sol sol,
-			Comportement comportement, Utilite utilite, TypeDeFeuille typeDeFeuille, TempsDeFeuille tempsDeFeuille,
-			UtiliteOrnement utiliteOrnement, UtiliteGastronomie utiliteGastronomie, Couleur couleur,
-			UtiliteComposition utiliteComposition, UtiliteCimetiere utiliteCimetiere, Long consommationEau,
-			Long consommationEngrais, Long prix, Long prixFruit, List<Vegetal> affinite, List<DejaPlante> dejaPlante,
-			List<Commentaire> commentaire, List<Article> article, Notice notice) {
+
+	public Vegetal(Long id, int version, String nom, String description, Nature nature, TempsDeVie tempsDeVie,
+			Presentation presentation, Sol sol, Comportement comportement, Utilite utilite, TypeDeFeuille typeDeFeuille,
+			TempsDeFeuille tempsDeFeuille, UtiliteOrnement utiliteOrnement, UtiliteGastronomie utiliteGastronomie,
+			Couleur couleur, UtiliteComposition utiliteComposition, UtiliteCimetiere utiliteCimetiere,
+			Long consommationEau, Long consommationEngrais, Long prix, Long prixFruit, List<Vegetal> affinite,
+			List<DejaPlante> dejaPlante, List<Commentaire> commentaire, List<Article> article, Notice notice) {
 		super();
 		this.id = id;
 		this.version = version;
+		this.nom = nom;
+		this.description = description;
 		this.nature = nature;
 		this.tempsDeVie = tempsDeVie;
 		this.presentation = presentation;
@@ -110,6 +119,24 @@ public class Vegetal {
 		this.notice = notice;
 	}
 
+	public String getNom() {
+		return nom;
+	}
+
+
+	public void setNom(String nom) {
+		this.nom = nom;
+	}
+
+
+	public String getDescription() {
+		return description;
+	}
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
 
 	public int getVersion() {

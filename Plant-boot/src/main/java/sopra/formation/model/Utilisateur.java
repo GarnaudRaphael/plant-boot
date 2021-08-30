@@ -16,19 +16,19 @@ public class Utilisateur extends Personne {
 	@Column(name = "numeroTelephone")
 	private String numeroTelephone;
 	@OneToMany(mappedBy="utilisateur")
-	@JsonView(Views.ViewCommon.class)
+	@JsonView(Views.ViewUtilisateur.class)
 	private List<Adresse> adresse;
 	@OneToMany(mappedBy="utilisateur")
-	@JsonView(Views.ViewCommon.class)
+	@JsonView(Views.ViewUtilisateur.class)
 	private List<Jardin> jardin;
 	@OneToMany(mappedBy="utilisateur")
-	@JsonView(Views.ViewCommon.class)
+	@JsonView(Views.ViewUtilisateur.class)
 	private List<Devis> devis;
 	@OneToMany(mappedBy="utilisateur")	
-	@JsonView(Views.ViewCommon.class)
+	@JsonView(Views.ViewUtilisateur.class)
 	private List<Recherche> recherche;
 	@OneToMany(mappedBy="utilisateur")
-	@JsonView(Views.ViewCommon.class)
+	@JsonView(Views.ViewUtilisateur.class)
 	private List<Commentaire> commentaire;
 	
 	public Utilisateur() {

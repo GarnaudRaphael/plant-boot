@@ -30,6 +30,7 @@ public class Adresse {
 	private String ville;
 	@ManyToOne
 	@JoinColumn(name="adresse_id")
+	@JsonView(Views.ViewAdresse.class)
 	private Utilisateur utilisateur;
 	
 	public Adresse() {
