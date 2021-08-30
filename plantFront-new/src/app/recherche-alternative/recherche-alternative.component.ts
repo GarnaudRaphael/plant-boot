@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {Recherche} from "../../../../../../travail/test/Plant-Boot/src/app/model/recherche";
+import {Recherche} from "../model/recherche";
 import {AppConfigService} from "../app-config.service";
 
 @Component({

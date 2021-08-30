@@ -9,6 +9,9 @@ import {VegetalComponent} from "./vegetal/vegetal.component";
 import {RechercheAlternativeComponent} from "./recherche-alternative/recherche-alternative.component";
 import {FormsModule} from "@angular/forms";
 import {HttpClientModule} from "@angular/common/http";
+import {PersonneComponent} from "./personne/personne.component";
+import {RechercheComponent} from "./recherche/recherche.component";
+import {UtilisateurComponent} from "./utilisateur/utilisateur.component";
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import {HttpClientModule} from "@angular/common/http";
     MonJardinComponent,
     DejaPlanteComponent,
     VegetalComponent,
+      PersonneComponent,
+      RechercheComponent,
     RechercheAlternativeComponent,
+      UtilisateurComponent
   ],
   imports: [
     BrowserModule,
