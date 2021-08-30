@@ -22,4 +22,5 @@ public class Views {
 	public static class ViewNotice extends ViewCommon {}
 	public static class ViewRecetteJardin extends ViewCommon {}
 	public static class ViewMeteo extends ViewCommon {}
+	public static class ViewVegetalWithNom extends ViewVegetal {}
 }

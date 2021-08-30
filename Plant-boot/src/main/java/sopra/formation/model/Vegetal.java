@@ -12,22 +12,26 @@ import javax.persistence.OneToMany;
 import javax.persistence.Version;
 
 import com.fasterxml.jackson.annotation.JsonView;
+
+import sopra.formation.model.Views.ViewVegetal;
 @Entity
 public class Vegetal {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@JsonView(Views.ViewCommon.class)
+	@JsonView({Views.ViewCommon.class, ViewVegetal.class})
 	private Long id;
 	@Version
 	@JsonView(Views.ViewCommon.class)
 	private int version;
+	@JsonView(Views.ViewCommon.class)
 	private String nom;
 	@JsonView(Views.ViewCommon.class)
+	private String nom;
+	@JsonView({Views.ViewCommon.class, ViewVegetal.class})
 	private Long nombre;
 	@JsonView(Views.ViewCommon.class)
-	private String nom;
-	@JsonView(Views.ViewCommon.class)
 	private String description;
+	@JsonView(Views.ViewCommon.class)
 	@JsonView(Views.ViewCommon.class)
 	private Nature nature;
 	@JsonView(Views.ViewCommon.class)
@@ -77,7 +81,7 @@ public class Vegetal {
 	private List<Article> article;
 	@ManyToOne
 	@JoinColumn(name="notice_id")
-	@JsonView(Views.ViewVegetal.class)
+	@JsonView(Views.ViewCommon.class)
 	private Notice notice;
 	
 	public Vegetal() {
@@ -294,15 +298,5 @@ public class Vegetal {
 	public void setNotice(Notice notice) {
 		this.notice = notice;
 	}
-
-	public String getNom() {
-		return nom;
-	}
-
-	public void setNom(String nom) {
-		this.nom = nom;
-	}
-	
-	
 	
 }
